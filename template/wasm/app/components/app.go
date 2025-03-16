@@ -11,11 +11,16 @@ import (
 
 func App(ctx context.Context, props any) goat.GoatNode {
 
-	return el.Div().
-		Attr("style", "display:flex;justify-content:center;align-items:center;gap:10px;flex-direction:column;padding:20px;").
-		Child(Counter(ctx, CounterProps{InitialCount: 0})).
-		Child(Counter(ctx, CounterProps{InitialCount: 10})).
-		Build()
+	div := el.Div()
+
+	div.Attr("style", "display:flex;justify-content:center;align-items:center;gap:10px;flex-direction:column;padding:20px;")
+
+	for i := range 3 {
+		div.Child(Counter(ctx, CounterProps{InitialCount: i}))
+	}
+
+	return div.Build()
+
 }
 
 type CounterProps struct {
@@ -25,9 +30,9 @@ type CounterProps struct {
 func Counter(ctx context.Context, props CounterProps) goat.GoatNode {
 	getCount, setCount := goat.UseState(ctx, props.InitialCount)
 
-	increment := goat.Fn(func(this js.Value, args []js.Value) any {
+	increment := goat.EventCB(func(el js.Value, event js.Value) {
+		goat.Log(event)
 		setCount(getCount() + 1)
-		return nil
 	})
 
 	return el.Div().
