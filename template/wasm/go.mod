@@ -2,4 +2,4 @@ module wasm
 
 go 1.24.1
 
-require github.com/brightsidedeveloper/goat v0.0.40
+require github.com/brightsidedeveloper/goat v0.0.41

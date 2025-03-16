@@ -1,6 +1,6 @@
 {
   "name": "create-goat-app",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "A CLI tool to scaffold a Goat App",
   "main": "index.js",
   "bin": {
