@@ -6,24 +6,16 @@ import (
 	"syscall/js"
 
 	"github.com/brightsidedeveloper/goat"
+	"github.com/brightsidedeveloper/goat/el"
 )
 
 func App(ctx context.Context, props any) goat.GoatNode {
 
-	return goat.GoatNode{
-		Tag: "div",
-		Attrs: map[string]string{
-			"style": "display:flex;justify-content:center;align-items:center;gap:10px;flex-direction:column;padding:20px;",
-		},
-		Children: []goat.GoatNode{
-			Counter(ctx, CounterProps{
-				InitialCount: 0,
-			}),
-			Counter(ctx, CounterProps{
-				InitialCount: 5,
-			}),
-		},
-	}
+	return el.Div().
+		Attr("style", "display:flex;justify-content:center;align-items:center;gap:10px;flex-direction:column;padding:20px;").
+		Child(Counter(ctx, CounterProps{InitialCount: 0})).
+		Child(Counter(ctx, CounterProps{InitialCount: 10})).
+		Build()
 }
 
 type CounterProps struct {
@@ -33,23 +25,17 @@ type CounterProps struct {
 func Counter(ctx context.Context, props CounterProps) goat.GoatNode {
 	getCount, setCount := goat.UseState(ctx, props.InitialCount)
 
-	increment := js.FuncOf(func(this js.Value, args []js.Value) any {
+	increment := goat.Fn(func(this js.Value, args []js.Value) any {
 		setCount(getCount() + 1)
 		return nil
 	})
 
-	return goat.GoatNode{
-		Tag: "div", Children: []goat.GoatNode{
-			{Text: fmt.Sprintf("Count: %d", getCount())},
-			{
-				Tag: "button",
-				Attrs: map[string]string{
-					"style": "margin-left: 10px",
-				},
-				Events: map[string]js.Func{
-					"click": increment,
-				},
-				Text: "Click me",
-			},
-		}}
+	return el.Div().
+		Child(el.Text(fmt.Sprintf("Count: %d", getCount()))).
+		Child(el.Button().
+			Attr("style", "margin-left: 10px").
+			Event("click", increment).
+			Text("Click me").Build()).
+		Build()
+
 }
