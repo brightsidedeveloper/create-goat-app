@@ -1,6 +1,2 @@
-github.com/a-h/templ v0.3.833 h1:L/KOk/0VvVTBegtE0fp2RJQiBm7/52Zxv5fqlEHiQUU=
-github.com/a-h/templ v0.3.833/go.mod h1:cAu4AiZhtJfBjMY0HASlyzvkrtjnHWPeEsyGK2YYmfk=
-github.com/brightsidedeveloper/goat v0.0.8 h1:mjXs1gY+9e2bK/EGEtgHMc0AqDQiRC69EZD6TDTc6Hk=
-github.com/brightsidedeveloper/goat v0.0.8/go.mod h1:QV1xjOS92h8XpBYjjaclupWkYytjjbf3hi+iLS2dkwc=
-github.com/google/go-cmp v0.6.0 h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=
-github.com/google/go-cmp v0.6.0/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY=
+github.com/brightsidedeveloper/goat v0.0.37 h1:7S/pgkEWVgI/kkUOt4ZpL1DYlRjykQPVvi0UKlZJMcg=
+github.com/brightsidedeveloper/goat v0.0.37/go.mod h1:nCXuag99tsFKcV6zM2EJH2Ilqv9WjbIyZCBsY9EBUgk=

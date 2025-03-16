@@ -7,6 +7,5 @@ build-wasm:
 
 dev:
 	(npm start & \
-	find wasm -name "*.templ" | entr -r templ generate & \
 	find wasm -name "*.go" | entr -r make build-wasm & \
 	wait) || (kill 0; exit 1)
