@@ -38,17 +38,18 @@ func Counter(ctx context.Context, props CounterProps) goat.GoatNode {
 		return nil
 	})
 
-	return goat.NewGoatNode("div", nil, nil, []goat.GoatNode{
-		{Text: fmt.Sprintf("Count: %d", getCount())},
-		{
-			Tag: "button",
-			Attrs: map[string]string{
-				"style": "margin-left: 10px",
+	return goat.GoatNode{
+		Tag: "div", Children: []goat.GoatNode{
+			{Text: fmt.Sprintf("Count: %d", getCount())},
+			{
+				Tag: "button",
+				Attrs: map[string]string{
+					"style": "margin-left: 10px",
+				},
+				Events: map[string]js.Func{
+					"click": increment,
+				},
+				Text: "Click me",
 			},
-			Events: map[string]js.Func{
-				"click": increment,
-			},
-			Text: "Click me",
-		},
-	}, "")
+		}}
 }
